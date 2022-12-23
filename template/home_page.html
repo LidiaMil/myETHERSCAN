@@ -14,6 +14,13 @@
     {{ else }}
     <span>?????</span>
     {{ end }}
+
+    <ul>
+        {{ range .Hobbies }}
+        <li><b>{{ . }}</b></li>
+        {{ end }}
+    </ul>
+
     <p>User: {{ .Name }}</p>
     <p>Age: {{ .Age }}</p>
     <p>Money: {{ .Money }}</p>

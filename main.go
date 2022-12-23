@@ -10,6 +10,7 @@ type User struct{
 	Age uint16
 	Money int16
 	Avg_grades, happiness float32
+	Hobbies []string
 }
 
 func (u User) getAllInfo() string{
@@ -22,7 +23,7 @@ func (u *User) setNewName(newName string){
 }
 
 func home_page(w http.ResponseWriter, r *http.Request){
-	bob := User{"Bob", 10, 100, 4.2, 1000}
+	bob := User{"Bob", 10, 100, 4.2, 1000, []string{"Football", "Games","Skate"} }
 	bob.setNewName("Alex")
 	// fmt.Fprintf(w, bob.getAllInfo())
 	tmpl, _:= template.ParseFiles("template/home_page.html")
