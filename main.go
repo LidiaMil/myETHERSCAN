@@ -11,8 +11,14 @@ type User struct{
 	avg_grades, happiness float32
 }
 
+func (u User) getAllInfo() string{
+	return fmt.Sprintf("User name is: %s. He is %d. He has money = %d", u.name, u.age, u.money)
+
+}
+
 func home_page(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w, "Hello YOU!!!")
+	bob := User{"Bob", 10, 100, 4.2, 1000}
+	fmt.Fprintf(w, bob.getAllInfo())
 }
 
 func contacts_page(w http.ResponseWriter, r *http.Request){
@@ -27,5 +33,8 @@ func handleRequest()  {
 }
 
 func main()  {
+	// var bob User =
+	// bob := User{name: "Bob", age: 10, money: 100, avg_grades: 4.2, happiness: 1000}
+	// bob := User{"Bob", 10, 100, 4.2, 1000}
 	handleRequest()
 }
