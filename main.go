@@ -16,8 +16,13 @@ func (u User) getAllInfo() string{
 
 }
 
+func (u *User) setNewName(newName string){
+	u.name = newName
+}
+
 func home_page(w http.ResponseWriter, r *http.Request){
 	bob := User{"Bob", 10, 100, 4.2, 1000}
+	bob.setNewName("Alex")
 	fmt.Fprintf(w, bob.getAllInfo())
 }
 
