@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Home page</h1>
+
+    {{ if eq .Name "Bob" }}
+    <span>Hello!!!</span>
+    {{ else }}
+    <span>?????</span>
+    {{ end }}
     <p>User: {{ .Name }}</p>
     <p>Age: {{ .Age }}</p>
     <p>Money: {{ .Money }}</p>
