@@ -2,6 +2,7 @@ package main
 
 import ("fmt"
 		"net/http"
+		"html/template"
 		)
 
 type User struct{
@@ -23,7 +24,9 @@ func (u *User) setNewName(newName string){
 func home_page(w http.ResponseWriter, r *http.Request){
 	bob := User{"Bob", 10, 100, 4.2, 1000}
 	bob.setNewName("Alex")
-	fmt.Fprintf(w, bob.getAllInfo())
+	// fmt.Fprintf(w, bob.getAllInfo())
+	tmpl, _:= template.ParseFiles("template/home_page.html")
+	tmpl.Execute(w, bob)
 }
 
 func contacts_page(w http.ResponseWriter, r *http.Request){
