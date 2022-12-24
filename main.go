@@ -15,6 +15,14 @@ func main()  {
 
 	defer db.Close()
 
+	//add data
+
+	insert, err := db.Query("INSERT INTO `users` (`name`, `age`) VALUES('Alex', 16)")
+	if err != nil {
+		panic(err)
+	}
+
+	defer insert.Close()
 	fmt.Println("подключено к mysql")
 
 }
