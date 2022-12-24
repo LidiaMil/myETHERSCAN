@@ -6,6 +6,10 @@ import ("fmt"
 
 )
 
+type User struct {
+	Name string `json:"name"`
+	Age uint16 `json:"age"`
+}
 func main()  {
 	fmt.Println("работа с mysql")
 	db, err := sql.Open("mysql","root:root@tcp(127.0.0.1:8889)/golang")
@@ -14,15 +18,32 @@ func main()  {
 	}
 
 	defer db.Close()
+	fmt.Println("подключено к mysql")
 
 	//add data
 
-	insert, err := db.Query("INSERT INTO `users` (`name`, `age`) VALUES('Alex', 16)")
+	insert, err := db.Query("INSERT INTO `users` (`name`, `age`) VALUES('Alex4', 16)")
 	if err != nil {
 		panic(err)
 	}
 
 	defer insert.Close()
-	fmt.Println("подключено к mysql")
+
+	//get data
+
+	res, err := db.Query("SELECT `name`,`age` FROM `users`")
+	if err != nil {
+		panic(err)
+	}
+
+	for res.Next(){
+		var user User
+		err = res.Scan(&user.Name,&user.Age)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(fmt.Sprintf("User: %s with age %d", user.Name, user.Age))
+	
+	}
 
 }
