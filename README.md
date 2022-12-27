@@ -1,3 +1,3 @@
 # myETHERSCAN
 
-go run main.go
+запуск go run main.go
