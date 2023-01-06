@@ -17,10 +17,11 @@ func handleFunc()  {
 	fmt.Println("hello you")
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.HandleFunc("/", index)
-	http.ListenAndServe(":8080", nil)
+
+	http.ListenAndServe(":8088", nil)
 }
 
 func main()  {
-	
+
 	handleFunc()
 }
